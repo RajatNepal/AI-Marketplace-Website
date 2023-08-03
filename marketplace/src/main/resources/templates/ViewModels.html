@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>View Models</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="centered">
+    <div style="display: flex; flex: row; justify-content: space-between; width:85%;">
+      <h1>View Models</h1>
+      <a href="/AddModel" style="display:flex; justify-self: flex-end;"><button th:if="${user.isAdmin == true}"
+          class="btn btn-primary">Add Model</button></a>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+  <div th:each="aiModel : ${listOfModels}">
+    <!-- Start a new table for each AI model -->
+    <div style="background-color: rgb(233, 233, 233);">
+      <img class="img-fluid centered" style="margin: 0 auto; border-style: double; border-width: 3px;" width="15%"
+        th:src="@{|/images/${aiModel.imgName}|}" alt="image not found">
+    </div>
+    <br>
+    <table>
+      <tr>
+        <th>Model Name</th>
+        <td th:text="${aiModel.modelName}"></td>
+      </tr>
+      <tr>
+        <th>Price: </th>
+        <td th:text="${aiModel.price + ' €'}"></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td th:text="${aiModel.description}"></td>
+      </tr>
+    </table>
+    <br>
+    <div class="text-center">
+      <a th:if="${user.isAdmin == false}" th:href="@{/ModelDetails/{id}(id=${aiModel.modelId})}">
+        <button class="btn btn-primary" style="width:15%;">View Details</button>
+      </a></td>
+
+      <a th:if="${user.isAdmin == true}" th:href="@{/EditModelDetails/{id}(id=${aiModel.modelId})}">
+        <button class="btn btn-primary" style="width:15%;">Edit Details</button>
+      </a></td>
+    </div>
+    <br>
+    <hr>
+  </div>
+</body>
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>

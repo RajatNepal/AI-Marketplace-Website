@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Order Details</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body class="login-body">
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="cart-body">
+    <div>
+      <br>
+      <h1 class="centered" style="color:white;">Order Details</h1>
+
+      <div class="centered">
+        <div class="edit-order">
+          <h3><span th:text="'Order ID: ' + ${order.orderId}"></span></h3>
+          <h4><span th:if="${user.isAdmin == false}" th:text="'Order Status: ' + ${order.orderState}"></span></h4>
+
+          <div class="centered">
+            <form th:if="${user.isAdmin == true}" method="POST" action="/orderDetails" style="width:100%">
+              <div>
+                <div class="form-group">
+                  <label for="status">Change Status:</label>
+                  <select class="form-control" id="status" name="status" th:value="*{order.orderState}">
+                    <option value="New">New</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Delivered">Delivered</option>
+                  </select>
+                </div>
+                <input type="hidden" id="id" name="id" th:value="${order.orderId}" />
+                <button type="submit" class="btn btn-primary" style="width:100%;">Save</button>
+              </div>
+            </form>
+          </div>
+
+          <br>
+          <div class="centered">
+            <div style="width:100%">
+              <h4>Models Purchased: </h4>
+              <table th:each="purchase: ${purchased}">
+                <tr>
+                  <p><span th:text="${'Model Name: ' + purchase.modelName}"></span></p>
+                  <p><span th:text="${'Price: ' + purchase.price}"></span> </p>
+
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br>
+          <a href="/orderHistory" class="centered"><button class="btn btn-primary" style="width:100%">Go
+              Back</button></a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>

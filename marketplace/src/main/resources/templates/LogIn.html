@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Login/Register</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <!-- <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script> -->
+</head>
+
+<body scroll="no" class="login-body">
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+  <div class="login-items">
+    <h1 class="centered">Welcome to Cravin' That Maven AI Market Place</h1>
+    <h2 class="centered">Enter your Login credentials below</h2>
+    <div class="centered">
+      <div style="width: 20%;">
+        <br>
+        <form action="/process_login" method="post">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input class="form-control" type="text" name="username" id="username" required />
+            <br>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" type="text" name="password" id="password" required minlength="6"
+              maxlength="10" />
+            <br>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Log In</button>
+          </div>
+        </form>
+
+        <br>
+        <button class="btn btn-secondary btn-lg btn-block" onclick="window.location.href='/register';">Register New
+          Account</button>
+        <div>
+        </div>
+      </div>
+</body>
+
+</html>

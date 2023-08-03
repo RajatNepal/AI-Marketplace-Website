@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Login/Register</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="order-body">
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/"><span
+              th:text="${user != null && user.isAdmin}?  ${'Manage Orders'}"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="cart-body">
+    <div>
+      <h1 class="centered">Enter your credit card information to complete the purchase</h1>
+      <br>
+      <div class="centered">
+        <div style="width: 20%;">
+
+          <form>
+            <div class="form-group">
+              <label for="CCNumber">Credit Card Number:</label>
+              <input class="form-control" type="text" name="CCNumber" required />
+              <br>
+            </div>
+            <div class="form-group">
+              <label for="CCName">Name on Card:</label>
+              <input class="form-control" type="text" name="CCName" required />
+              <br>
+            </div>
+            <div class="form-group">
+              <label for="CCDate">Expiration Date:</label>
+              <input class="form-control" type="text" name="CCDate" required />
+              <br>
+            </div>
+            <div class="form-group">
+              <label for="CCCode">Security Code:</label>
+              <input class="form-control" type="text" name="CCCode" required />
+              <br>
+            </div>
+            <h3 class="centered" th:text="'Total Price: ' + ${totalPrice} + '€'"></h3>
+            <div>
+            </div>
+          </form>
+          <a class="centered" href="/checkOutSuccessful">
+            <button class="btn btn-primary" style="width:100%" type="button">Check Out</button>
+          </a>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="general-body">
+    <div>
+        <h1 class="centered">Please Create an Account to Continue.</h1>
+        <div class="centered">
+            <div style="width:70%;">
+                <form action="/process_register" th:object="${user}" method="post">
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" th:field="*{username}" required
+                            minlength="2" maxlength="20" />
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input class="form-control" type="email" id="email" th:field="*{email}" required />
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="text" class="form-control" id="password" th:field="*{password}" required
+                            minlength="6" maxlength="10" />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Add Model</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="general-body" style="height: 100vh;">
+    <div>
+      <h1 class="centered" style="width:100%;">Add a new AI Model</h1>
+      <br>
+
+      <div class="centered">
+        <div style="width:100%;">
+          <form action="/AddModel" method="post">
+            <div class="form-group">
+              <label for="modelName">Model Name:</label>
+              <input class="form-control" type="text" name="modelName" id="modelName" required />
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price: </label>
+              <input class="form-control" type="decimal" name="price" id="price" />
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description: </label>
+              <input class="form-control" type="text" name="description" id="description" />
+              <br>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" type="submit" style="width:100%;">Add Model</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+
+
+</html>

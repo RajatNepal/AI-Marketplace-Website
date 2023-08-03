@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="cart-body">
+    <div>
+      <h1 class="centered">Shopping Cart</h1>
+
+      <table>
+        <tr>
+          <th>Model Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Trained</th>
+        </tr>
+        <tr th:each="aiModel : ${filledShoppingCart}">
+          <td th:text="${aiModel.modelName}"></td>
+          <td th:text="${aiModel.price}"></td>
+          <td th:text="${aiModel.description}"></td>
+          <td th:text="${aiModel.trained}"></td>
+        </tr>
+      </table>
+
+      <h3 class="centered" th:text="${'Total Price: ' + totalPrice + ' €'}"></h3>
+
+      <a class="centered" href="/checkOut">
+        <button class="btn btn-primary" type="button">Check Out!</button>
+      </a>
+    </div>
+  </div>
+</body>
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>AI Marketplace</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user != null && user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}? ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- title content -->
+  <div class="title-bg">
+    <div>
+      <h1 class="centered" style="font-size: 100px;color: rgb(241, 241, 241);">AI Marketplace</h1>
+      <h2 class="centered" style="color:rgb(188, 189, 206)">Experience the future with AI</h2>
+    </div>
+  </div>
+  </div>
+
+  <!-- item 1 -->
+
+  <div class="row"
+    style="padding:2%; padding-left: 7%;padding-right: 7%; height: 100%; background-color: rgb(73, 83, 92); color: whitesmoke;">
+    <div class="col-sm-9" style="height:100%;">
+      <h3 class="centered">Why Invest in AI?</h3>
+      <p class="centered">Investing in AI models from our Marketplace can offer many advantages for individuals and
+        businesses looking to stay ahead of the curve. By purchasing AI models, customers can benefit from the expertise
+        and experience of top AI developers and researchers, who have created cutting-edge algorithms and models to
+        solve complex problems. These models can help automate processes, reduce costs, and improve overall
+        productivity, while also offering valuable insights and predictions that can inform strategic decision-making.
+        Additionally, with a wide variety of models available for purchase, customers can find the perfect solution to
+        fit their specific needs and goals. By purchasing AI models from your Marketplace, customers can gain a
+        competitive edge in their industry and position themselves for success in the future.</p>
+    </div>
+    <div class="col-sm-3">
+      <img class="img-fluid" width="75%" src="/images/res1.png" alt="image not found">
+    </div>
+  </div>
+
+  <!-- item 2 -->
+  <div class="row"
+    style="padding:2%; padding-left: 7%;padding-right: 7%; height: 100%; background-color: rgb(57, 65, 73); color: whitesmoke;">
+    <div class="col-sm-3">
+      <img class="img-fluid" width="75%" src="/images/res2.png" alt="image not found">
+    </div>
+    <div class="col-sm-9" style="height:100%">
+      <h3 class="centered">Why is AI the Future?</h3>
+      <p class="centered">AI, or artificial intelligence, is the future because of its incredible potential to
+        revolutionize the way we live and work. AI has already made significant advancements in areas such as
+        healthcare, transportation, and finance, and its capabilities are only expanding. With the ability to process
+        and analyze vast amounts of data, AI can help us make better decisions, improve efficiency, and even create new
+        products and services that were once thought impossible. As we continue to develop more sophisticated AI models
+        and algorithms, we can expect to see even greater benefits in the future, making AI an essential technology for
+        businesses and individuals alike.</p>
+    </div>
+  </div>
+
+</body>
+
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>

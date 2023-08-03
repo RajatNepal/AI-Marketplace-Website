@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Order History</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="cart-body">
+    <div>
+      <h1 class="centered">All User Accounts</h1>
+      <br>
+      <table class="table table-hover" style="width:100%;">
+        <tr th:each="u : ${userList}">
+          <div class="centered">
+            <div class="order">
+              <div style="display:flex; flex-direction: row; justify-content: space-between">
+                <h3><span th:text="'Username: ' + ${u.username}"></span></h3>
+              </div>
+              <h4><span th:text="'User Email: ' + ${u.email}"></span></h4>
+              <h4><span th:text="'User Password: ' + ${u.password}"></span><h4>
+            </div>
+
+          </div>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>

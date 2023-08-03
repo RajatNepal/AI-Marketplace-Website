@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmls:th="https://www.thymleaf.org">
+
+<head>
+  <title>Edit Model Details</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size: 200%;">AI Marketplace</a>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; padding-right: 5%;">
+        <li><a class="nav-buttons" href="/ViewUsers"><span
+          th:if="${user != null && user.isAdmin}">View Users</span></a></li>
+        <li><a class="nav-buttons" href="/orderHistory"><span
+              th:text="${user != null && user.isAdmin}?  ${'Manage Orders'} : 'Order History'"></span></a></li>
+        <li><a class="nav-buttons" href="/ViewModels">View Models</a></li>
+        <li><a class="nav-buttons" href="/ShoppingCart">Shopping Cart</a></li>
+        <li><a class="nav-buttons" href="/LogIn"><span
+              th:text="${user != null}?  ${'Welcome ' + user.username + '!'}: 'Log In'"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="cart-body">
+    <div>
+      <h1 class="centered">Edit Model Details</h1>
+
+      <div class="centered">
+        <div>
+          <h3><span th:text="'Model Name: ' + ${model.modelName}"></span></h3>
+          <br>
+          <form action="/EditModelDetails" method="POST">
+            <div class="form-group">
+              <label for="price">Update Price:</label>
+              <input class="form-control" type="decimal" name="price" id="price" th:value="*{model.price}" />
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Update Description:</label>
+              <input class="form-control" type="text" name="description" id="description"
+                th:value="*{model.description}" />
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label
+                th:text="${model.hidden == true}? ${'Currently HIDDEN, change to:'} : 'Currently VISIBLE, change to:'"
+                for="hidden"></label>
+              <select class="form-control" id="hidden" name="hidden" th:value="*{model.hidden}">
+                <option value="false">Visible</option>
+                <option value="true">Hidden</option>
+              </select>
+            </div>
+            <br>
+            <input type="hidden" id="id" name="id" th:value="${model.modelId}" />
+            <button type="submit" class="btn btn-primary" style="width:100%;">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer class="footer">
+  <hr>
+  <h4>Final Project for COMP30860</h4>
+  <p>Created By: Ethan Doyle, Rajat Nepal, Veronica Figueroa, Lily Greenberg, John Heinig</p>
+</footer>
+
+</html>
